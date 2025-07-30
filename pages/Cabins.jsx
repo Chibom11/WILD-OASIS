@@ -16,9 +16,9 @@ function Cabins() {
   useEffect(() => {
     async function getCabinData() {
       try {
-        const data = await fetchWithAuthRetry('/users/rooms');
-        console.log(data);
-        setCabinData(data);
+        const data = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/rooms`);
+        console.log(data.data);
+        setCabinData(data.data);
       } catch (err) {
         console.error('Error fetching cabins:', err);
       }
