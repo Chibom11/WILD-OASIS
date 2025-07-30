@@ -18,8 +18,8 @@ function Cabins() {
     async function getCabinData() {
       try {
         const data = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/rooms`,{withCredentials: true});
-        console.log(data.data);
-        setCabinData(data.data);
+        console.log(data.data.data);
+        setCabinData(data.data.data);
       } catch (err) {
         console.error('Error fetching cabins:', err);
       }
