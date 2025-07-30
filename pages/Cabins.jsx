@@ -17,8 +17,8 @@ function Cabins() {
     async function getCabinData() {
       try {
         const data = await fetchWithAuthRetry('/users/rooms');
-        console.log(data.data);
-        setCabinData(data.data);
+        console.log(data);
+        setCabinData(data);
       } catch (err) {
         console.error('Error fetching cabins:', err);
       }
