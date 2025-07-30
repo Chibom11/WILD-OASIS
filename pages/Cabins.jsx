@@ -3,6 +3,7 @@ import CabinDetails from './CabinDetails.jsx';
 import SearchBar from '../components/SearchBar.jsx';
 import { fetchWithAuthRetry } from '../utils/authutil.js';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const ROOMS_PER_PAGE = 15;
 
