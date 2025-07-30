@@ -128,7 +128,7 @@ const handleCheckOutChange = (e) => {
 
   const checkAvailability = async () => {
     const res = await axios.post(
-      'http://localhost:8000/api/users/isavailable',
+      `${import.meta.env.VITE_API_URL}/api/users/isavailable`,
       {
         roomId: id,
         newCheckIn: checkInDate,
@@ -163,7 +163,7 @@ const handleCheckOutChange = (e) => {
     if (status === 401) {
       try {
         // Refresh the token
-        await axios.get('http://localhost:8000/api/auth/refresh-token', {
+        await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/refresh-token`, {
           withCredentials: true,
         });
 
