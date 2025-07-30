@@ -17,7 +17,7 @@ function Cabins() {
   useEffect(() => {
     async function getCabinData() {
       try {
-        const data = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/rooms`);
+        const data = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/rooms`,{withCredentials: true});
         console.log(data.data);
         setCabinData(data.data);
       } catch (err) {
