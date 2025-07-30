@@ -43,9 +43,9 @@ function UserProfile() {
 async function handleLogout() {
   try {
     setRedirecting(true);
-
+// http://localhost:8000/api/users/logout
     const res = await axios.post(
-      'http://localhost:8000/api/users/logout',
+      `${import.meta.env.VITE_API_URL}/api/users/logout`,
       {},
       { withCredentials: true }
     );
@@ -74,13 +74,15 @@ async function handleLogout() {
     if (err.response && err.response.status === 401) {
       try {
         // Refresh access token
-        await axios.get('http://localhost:8000/api/auth/refresh-token', {
+        // http://localhost:8000/api/auth/refresh-token
+        await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/refresh-token`, {
           withCredentials: true
         });
 
         // Retry logout
+        // 'http://localhost:8000/api/users/logout'
         const retryRes = await axios.post(
-          'http://localhost:8000/api/users/logout',
+          `${import.meta.env.VITE_API_URL}/api/users/logout`,
           {},
           { withCredentials: true }
         );

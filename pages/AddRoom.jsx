@@ -109,7 +109,7 @@ function AddRoom() {
   balconyImages.forEach((file) => form.append('balcony_img', file));
 
   const submitForm = async () => {
-    return await axios.post('http://localhost:8000/api/users/addroom', form, {
+    return await axios.post(`${import.meta.env.VITE_API_URL}/api/users/addroom`, form, {
       headers: { 'Content-Type': 'multipart/form-data' },
       withCredentials: true,
     });
@@ -124,7 +124,7 @@ function AddRoom() {
   } catch (error) {
     if (error.response?.status === 401) {
       try {
-        await axios.get('http://localhost:8000/api/auth/refresh-token', {
+        await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/refresh-token`, {
           withCredentials: true,
         });
         const retryRes = await submitForm();

@@ -39,7 +39,7 @@ const payload = {
 
   const submitBooking = async () => {
     return await axios.post(
-      'http://localhost:8000/api/users/newbooking',
+      `${import.meta.env.VITE_API_URL}/api/users/newbooking`,
       payload,
       { withCredentials: true }
     );
@@ -57,7 +57,7 @@ const payload = {
     if (status === 401) {
       try {
         console.warn("Access token expired. Attempting refresh...");
-        await axios.get('http://localhost:8000/api/auth/refresh-token', {
+        await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/refresh-token`, {
           withCredentials: true,
         });
 

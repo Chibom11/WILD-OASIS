@@ -20,8 +20,9 @@ function UpdateDetails({ onClose }) {
   };
 
   const handleUserName = async () => {
+    // 'http://localhost:8000/api/users/update-username'
     try {
-      await axios.post('http://localhost:8000/api/users/update-username', {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/users/update-username`, {
         newUserName: username
       }, { withCredentials: true });
 
@@ -30,10 +31,11 @@ function UpdateDetails({ onClose }) {
     } catch (error) {
       if (error.response?.status === 401) {
         try {
-          await axios.get('http://localhost:8000/api/auth/refresh-token', {
+          // http://localhost:8000/api/auth/refresh-token
+          await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/refresh-token`, {
             withCredentials: true
           });
-          await axios.post('http://localhost:8000/api/users/update-username', {
+          await axios.post(`${import.meta.env.VITE_API_URL}/api/users/update-username`, {
             newUserName: username
           }, { withCredentials: true });
 
@@ -56,7 +58,7 @@ function UpdateDetails({ onClose }) {
     }
 
     try {
-      await axios.post('http://localhost:8000/api/users/update-password',
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/users/update-password`,
         { newPassword },
         { withCredentials: true }
       );
@@ -64,10 +66,10 @@ function UpdateDetails({ onClose }) {
     } catch (error) {
       if (error.response?.status === 401) {
         try {
-          await axios.get('http://localhost:8000/api/auth/refresh-token', {
+          await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/refresh-token`, {
             withCredentials: true
           });
-          await axios.post('http://localhost:8000/api/users/update-password',
+          await axios.post(`${import.meta.env.VITE_API_URL}/api/users/update-password`,
             { newPassword },
             { withCredentials: true }
           );
@@ -99,7 +101,7 @@ function UpdateDetails({ onClose }) {
     formData.append("avatar", avatarFile);
 
     try {
-      const res = await axios.post('http://localhost:8000/api/users/update-avatar', formData, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/update-avatar`, formData, {
         withCredentials: true,
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -111,11 +113,11 @@ function UpdateDetails({ onClose }) {
     } catch (error) {
       if (error.response?.status === 401) {
         try {
-          await axios.get('http://localhost:8000/api/auth/refresh-token', {
+          await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/refresh-token`, {
             withCredentials: true
           });
 
-          const retryRes = await axios.post('http://localhost:8000/api/users/update-avatar', formData, {
+          const retryRes = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/update-avatar`, formData, {
             withCredentials: true,
             headers: {
               'Content-Type': 'multipart/form-data',

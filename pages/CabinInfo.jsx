@@ -53,7 +53,7 @@ function CabinInfo() {
         localStorage.setItem('room', JSON.stringify(foundCabin));
         
         if (foundCabin?.owner) {
-          const res = await axios.post('http://localhost:8000/api/users/hostinfo',{
+          const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/hostinfo`,{
             ownerId: foundCabin.owner,
           }, {
             withCredentials: true,

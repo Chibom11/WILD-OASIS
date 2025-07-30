@@ -16,7 +16,7 @@ function DashboardPastBookings() {
   const handleMarkAsPaid = async (bookingId) => {
     try {
       const res = await axios.post(
-        'http://localhost:8000/api/users/paid',
+        `${import.meta.env.VITE_API_URL}/api/users/paid`,
         { bookingId },
         { withCredentials: true }
       );

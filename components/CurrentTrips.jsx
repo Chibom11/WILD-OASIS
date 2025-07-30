@@ -14,7 +14,7 @@ const CurrentTrips = () => {
   setActiveTab('Current Trips'); // Set the active tab to 'Current Trips'
   const getCurrentTrips = async () => {
   try {
-    const res = await axios.get('http://localhost:8000/api/users/currenttrips', {
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/currenttrips`, {
       withCredentials: true,
     });
 
@@ -29,11 +29,11 @@ const CurrentTrips = () => {
       console.warn("Access token expired, attempting to refresh...");
 
       try {
-        await axios.get('http://localhost:8000/api/auth/refresh-token', {
+        await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/refresh-token`, {
           withCredentials: true,
         });
 
-        const retryRes = await axios.get('http://localhost:8000/api/users/currenttrips', {
+        const retryRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/currenttrips`, {
           withCredentials: true,
         });
 

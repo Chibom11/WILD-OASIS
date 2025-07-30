@@ -10,7 +10,7 @@ const PastTrips = () => {
   setActiveTab('Past trips'); 
   const getPastTrips = async () => {
   try {
-    const res = await axios.get('http://localhost:8000/api/users/pasttrips', {
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/pasttrips`, {
       withCredentials: true,
     });
 
@@ -22,11 +22,11 @@ const PastTrips = () => {
       console.warn("Access token expired, attempting to refresh...");
 
       try {
-        await axios.get('http://localhost:8000/api/auth/refresh-token', {
+        await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/refresh-token`, {
           withCredentials: true,// ensure cookies are sent
         });
 
-        const retryRes = await axios.get('http://localhost:8000/api/users/pasttrips', {
+        const retryRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/pasttrips`, {
           withCredentials: true,
         });
 

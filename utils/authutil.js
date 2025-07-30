@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:8000/api'; // Adjust if needed
+const API_BASE = `${import.meta.env.VITE_API_URL}/api`; // Adjust if needed
 
 export const fetchWithAuthRetry = async (endpoint) => {
   try {

@@ -65,7 +65,7 @@ function DashboardLanding() {
   const handleCheckIn = async (bookingId) => {
     try {
       const res = await axios.post(
-        'http://localhost:8000/api/users/checkinuser',
+        `${import.meta.env.VITE_API_URL}/api/users/checkinuser`,
         { bookingId },
         { withCredentials: true }
       );
@@ -84,7 +84,7 @@ function DashboardLanding() {
   const handleCheckOut = async (bookingId) => {
     try {
       const res = await axios.post(
-        'http://localhost:8000/api/users/checkoutuser',
+        `${import.meta.env.VITE_API_URL}/api/users/checkoutuser`,
         { bookingId },
         { withCredentials: true }
       );

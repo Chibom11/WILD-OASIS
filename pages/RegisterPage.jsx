@@ -52,7 +52,7 @@ function RegisterPage() {
     formData.append('avatar', avatar);
 
     try {
-      await axios.post('/api/users/register', formData, {
+      await axios.post(`${import.meta.env.VITE_API_URL}/api/users/register`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
