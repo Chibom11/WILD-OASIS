@@ -110,11 +110,11 @@ const handlePayment = async (booking) => {
           );
 
           
-           window.location.href = '/profile/pasttrips';
+           navigate('/profile/pasttrips')
         } catch (error) {
           console.error("Payment verification failed:", error);
         
-          window.location.href='/profile/currenttrips'
+           navigate('/profile/currenttrips')
         }
       },
 
