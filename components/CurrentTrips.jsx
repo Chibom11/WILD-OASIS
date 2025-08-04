@@ -3,9 +3,10 @@ import {useState,useEffect}  from 'react'
 import axios from 'axios'
 import toast from 'react-hot-toast';
 import { useOutletContext } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 
 const CurrentTrips = () => {
+  const navigate=useNavigate()
   const today=new Date();
   console.log(today)
    const {activeTab,setActiveTab } = useOutletContext();
