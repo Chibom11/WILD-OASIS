@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import {toast} from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 function CreateHostProfile() {
+  const navigate=useNavigate()
   const [formData, setFormData] = useState({
     businessName: "",
     gstNumber: "",
@@ -50,6 +52,7 @@ function CreateHostProfile() {
       });
       setMessage(res.data.message);
       toast.success("Host profile created successfully!");
+      navigate('/profile/aboutme')
     } catch (err) {
         toast.error("Failed to create host profile");
       setMessage(err.response?.data?.message || "Something went wrong");
