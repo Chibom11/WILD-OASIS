@@ -59,7 +59,7 @@ const handleCancellation=async(booking)=>{
   
   console.log(booking);
  try {
-   await axios.post('http://localhost:8000/api/users/cancelbooking',
+   await axios.post(`${import.meta.env.VITE_API_URL}/api/users/cancelbooking`,
      {bookingId:booking._id}, {withCredentials:true}
    )
    toast.success("Booking cancelled successfully")
@@ -75,10 +75,10 @@ const handleCancellation=async(booking)=>{
 }
 const handlePayment = async (booking) => {
   try {
-    const resone = await axios.get('http://localhost:8000/api/getkey');
+    const resone = await axios.get(`${import.meta.env.VITE_API_URL}/api/getkey`);
 
     const restwo = await axios.post(
-      'http://localhost:8000/api/users/checkout',
+      `${import.meta.env.VITE_API_URL}/api/users/checkout`,
       { amount: booking.totalAmount*100 }, // amount in paise
       { withCredentials: true }
     );
@@ -98,7 +98,7 @@ const handlePayment = async (booking) => {
 
         try {
           await axios.post(
-            "http://localhost:8000/api/users/paymentverification",
+            `${import.meta.env.VITE_API_URL}/api/users/paymentverification`,
             {
               razorpay_payment_id,
               razorpay_order_id,
