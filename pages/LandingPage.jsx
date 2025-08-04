@@ -4,6 +4,15 @@ import FlipText from '../effects/FlipText'
 import '../src/App.css';
 import {easeOut, motion} from 'framer-motion'
 import { replace, useNavigate } from 'react-router-dom';
+import Slider from 'react-animated-slider';
+import 'react-animated-slider/build/horizontal.css';
+
+const slides = [
+  { title: 'username', description: 'test'},
+  { title: 'email', description: 'test@gmail.com'},
+  {title:'password',description:'tu'}
+];
+
 
 
 
@@ -21,6 +30,14 @@ function LandingPage() {
   <div className="absolute inset-0 bg-cover bg-center bg-no-repeat">
     <img src="./bimg.jpg" alt="background" className="h-full w-full object-cover brightness-75" />
     <div className="absolute inset-0 bg-black/30 z-10"></div> {/* Dark overlay for text contrast */}
+  </div>
+  <div>
+    <Slider>
+  {slides.map((slide, index) => <div key={index}>
+    <h2>{slide.title}</h2>
+    <div>{slide.description}</div>
+  </div>)}
+</Slider>
   </div>
 
   {/* Heading and subheading text */}
