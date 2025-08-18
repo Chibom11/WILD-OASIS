@@ -63,7 +63,7 @@ async function handleLogout() {
           localStorage.removeItem("hostRooms");
         }    
      navigate('/landingpage')
-      return; // exit function
+     
     } else {
       toast.error("Logout failed. Please try again.");
       setRedirecting(false);
