@@ -11,17 +11,17 @@ export const HostContextProvider = ({ children }) => {
   // 1. Fetch Host Rooms
   const fetchHostRooms = async () => {
     try {
-      const res = await axios.get('http://localhost:8000/api/users/gethostrooms', {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/gethostrooms`, {
         withCredentials: true,
       });
       setHostRooms(res.data.data);
     } catch (error) {
       if (error.response?.status === 401) {
         try {
-          await axios.get('http://localhost:8000/api/auth/refresh-token', {
+          await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/refresh-token`, {
             withCredentials: true,
           });
-          const retryRes = await axios.get('http://localhost:8000/api/users/gethostrooms', {
+          const retryRes = await axios.get(`${import.meta.env.VITE_API_URL}/api/users/gethostrooms`, {
             withCredentials: true,
           });
           setHostRooms(retryRes.data.data);
@@ -41,7 +41,7 @@ export const HostContextProvider = ({ children }) => {
       if (roomIds.length === 0) return;
 
       const res = await axios.post(
-        'http://localhost:8000/api/users/getpaidrooms',
+        `${import.meta.env.VITE_API_URL}/api/users/getpaidrooms`,
         { roomIds },
         { withCredentials: true }
       );
@@ -49,11 +49,11 @@ export const HostContextProvider = ({ children }) => {
     } catch (error) {
       if (error.response?.status === 401) {
         try {
-          await axios.get('http://localhost:8000/api/auth/refresh-token', {
+          await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/refresh-token`, {
             withCredentials: true,
           });
           const retryRes = await axios.post(
-            'http://localhost:8000/api/users/getpaidrooms',
+            `${import.meta.env.VITE_API_URL}/api/users/getpaidrooms`,
             { roomIds: hostRooms.map(r => r._id) },
             { withCredentials: true }
           );
@@ -74,7 +74,7 @@ export const HostContextProvider = ({ children }) => {
       if (roomIds.length === 0) return;
 
       const res = await axios.post(
-        'http://localhost:8000/api/users/getunconfirmedrooms',
+        `${import.meta.env.VITE_API_URL}/api/users/getunconfirmedrooms`,
         { roomIds },
         { withCredentials: true }
       );
@@ -82,11 +82,11 @@ export const HostContextProvider = ({ children }) => {
     } catch (error) {
       if (error.response?.status === 401) {
         try {
-          await axios.get('http://localhost:8000/api/auth/refresh-token', {
+          await axios.get(`${import.meta.env.VITE_API_URL}/api/auth/refresh-token`, {
             withCredentials: true,
           });
           const retryRes = await axios.post(
-            'http://localhost:8000/api/users/getunconfirmedrooms',
+            `${import.meta.env.VITE_API_URL}/api/users/getunconfirmedrooms`,
             { roomIds: hostRooms.map(r => r._id) },
             { withCredentials: true }
           );
